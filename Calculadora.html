@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f2f2f2;
+        margin: 0;
+        background-color: #00a4ff82;
+        
+    }
+    .calculadora {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+      
+    }
+    .display {
+        font-size: 24px;
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: right;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    .botoes {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+    .botao {
+        font-size: 18px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: #ffffff;
+        transition: background-color 0.3s ease;
+    }
+    .botao:hover {
+        background-color: #45a049;
+    }
+    .botao.operador {
+        background-color: #2196f3;
+    }
+    .botao.operador:hover {
+        background-color: #1e87dc;
+    }
+</style>
+</head>
+<body>
+<div class="calculadora">
+    <div class="display" id="display">0</div>
+    <div class="botoes">
+        <button class="botao" onclick="LimparDisplay()">C</button>
+        <button class="botao operador" onclick="acrescentarCaractere('/')">/</button>
+        <button class="botao operador" onclick="acrescentarCaractere('*')">x</button>
+        <button class="botao" onclick="acrescentarCaractere('7')">7</button>
+        <button class="botao" onclick="acrescentarCaractere('8')">8</button>
+        <button class="botao" onclick="acrescentarCaractere('9')">9</button>
+        <button class="botao operador" onclick="acrescentarCaractere('-')">-</button>
+        <button class="botao" onclick="acrescentarCaractere('4')">4</button>
+        <button class="botao" onclick="acrescentarCaractere('5')">5</button>
+        <button class="botao" onclick="acrescentarCaractere('5')">6</button>
+        <button class="botao operador" onclick="acrescentarCaractere('+')">+</button>
+        <button class="botao" onclick="acrescentarCaractere('1')">1</button>
+        <button class="botao" onclick="acrescentarCaractere('2')">2</button>
+        <button class="botao" onclick="acrescentarCaractere('3')">3</button>
+        <button class="botao operador" onclick="Calcular()">=</button>
+        <button class="botao" onclick="acrescentarCaractere('0')">0</button>
+        <button class="botao" onclick="acrescentarCaractere('.')">.</button>
+    </div>
+    <script>
+        let valorDisplay = '';
+
+        function atualizarDisplay(){
+            document.getElementById("display").innerText = valorDisplay;
+
+        }
+
+        function acrescentarCaractere(Caracter){
+            valorDisplay += Caracter;
+            atualizarDisplay();
+        }
+
+        function LimparDisplay(){
+            valorDisplay = '';
+            
+            atualizarDisplay();
+        }
+
+        function Calcular(){
+
+            try{
+                resultado = eval(valorDisplay);
+                valorDisplay = resultado.toString();
+                atualizarDisplay();
+            }catch{
+                valorDisplay = "Cálculo Inválido";
+                atualizarDisplay();
+            }
+           
+        }
+
+    </script>
+</div>
+</body>
+</html>
